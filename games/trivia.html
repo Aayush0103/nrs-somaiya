@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>NRS | Math Quiz</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="../assets/img/NRS-LOGO.webp" rel="icon">
+    <link href="../assets/img/NRS-LOGO.webp" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+    <!-- TimelineMax and tweenlite -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenLite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TimelineMax.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js"></script>
+
+    <!-- Bootstrap CSS File -->
+    <link href="../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+    <link href="../assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../assets/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../assets/lib/venobox/venobox.css" rel="stylesheet">
+    <link href="../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+    Theme Name: TheEvent
+    Theme URL: https://bootstrapmade.com/theevent-conference-event-bootstrap-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+    <style>
+        .trivia-container body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            font-family: "Roboto Mono", Roboto, sans-serif;
+            font-weight: 400;
+        }
+        /* Stage Structure Styles */
+        
+        .trivia-container #stage {
+            width: 100%;
+            height: 100%;
+            border: 10px solid #5a7785;
+            background-color: #90a4ae;
+            position: fixed;
+            top: 0;
+        }
+        
+        .trivia-container #container {
+            padding: 30px;
+        }
+        
+        .trivia-container #gameContainer h1 {
+            text-align: center;
+            font-size: 54px;
+            padding: 0;
+            color: #fff;
+        }
+        
+        .trivia-container #gameHeader {
+            display: none;
+            padding: 0 20px;
+        }
+        /* Core Game Element Styles */
+        
+        .trivia-container #gameChoices {
+            display: none;
+        }
+        
+        .trivia-container .container {
+            padding: 20px;
+        }
+        
+        .trivia-container #gameChoices button {
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+            line-height: 32px;
+            border-radius: 2px;
+            font-size: 26px;
+            width: 100%;
+            outline: none;
+            border: none;
+            background-color: #ff5722;
+            height: 100%;
+            display: block;
+            color: #fff;
+            cursor: pointer;
+            text-align: center;
+            padding: 12px;
+            font-family: "Roboto Mono", Roboto, sans-serif;
+            font-weight: 400;
+        }
+        
+        .trivia-container #gameChoices button:hover {
+            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.26), 0 4px 15px 0 rgba(0, 0, 0, 0.26);
+            background-color: #ff6a3c;
+        }
+        
+        .trivia-container .left {
+            float: left;
+            display: block;
+        }
+        
+        .trivia-container .questions {
+            width: 68%;
+            background-color: #000;
+            float: left;
+            display: block;
+            margin-right: 2%;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+        }
+        
+        .trivia-container .questions span {
+            color: #ff5722;
+            font-size: 26px;
+        }
+        
+        .trivia-container .timer {
+            width: 15%;
+            background-color: #f4b400;
+            float: left;
+            display: block;
+            margin-right: 2%;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+            font-size: 26px;
+            color: #fff;
+        }
+        
+        .trivia-container .score {
+            width: 13%;
+            background-color: #fff;
+            float: left;
+            display: block;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+            color: #ff5722;
+            font-size: 26px;
+        }
+        
+        .trivia-container .half {
+            width: 50%;
+        }
+        
+        .trivia-container #startButton {
+            background-color: #f4b400;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+            line-height: 32px;
+            border-radius: 2px;
+            border: none;
+            outline: none;
+            width: 100%;
+            color: #fff;
+            font-size: 48px;
+            padding: 30px 0;
+            cursor: pointer;
+            font-family: "Roboto Mono", Roboto, sans-serif;
+            font-weight: 400;
+        }
+        
+        .trivia-container #startButton:hover {
+            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.26), 0 4px 15px 0 rgba(0, 0, 0, 0.26);
+            background-color: #ffc728;
+        }
+        /* Modal Window Styles */
+        
+        .trivia-container #modal_window {
+            position: absolute;
+            top: 90px;
+            border: 1px solid #333;
+            background-color: #000;
+            width: 340px;
+            z-index: 2000;
+            height: auto;
+            display: none;
+            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.26);
+        }
+        
+        .trivia-container .modal_message {
+            padding: 10px 20px;
+        }
+        
+        .trivia-container .modal_message p {
+            color: #fff;
+        }
+        
+        .trivia-container .modal_message h2 {
+            color: #fff;
+        }
+        
+        .trivia-container .modal_message span {
+            float: right;
+        }
+        
+        .trivia-container .modal_message div button {
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+            line-height: 16px;
+            border-radius: 2px;
+            font-size: 18px;
+            width: 130px;
+            outline: none;
+            border: none;
+            background-color: #ff5722;
+            display: block;
+            color: #fff;
+            cursor: pointer;
+            text-align: center;
+            min-height: 44px;
+            padding: 6px;
+            font-family: "Roboto Mono", Roboto, sans-serif;
+            font-weight: 400;
+        }
+        
+        .trivia-container .modal_message div button:hover {
+            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.26), 0 4px 15px 0 rgba(0, 0, 0, 0.26);
+            background-color: #ff6a3c;
+        }
+        
+        .trivia-container .modal_message div button.twitter {
+            background-color: #55acee;
+            margin-right: 38px;
+        }
+        
+        .trivia-container .modal_message div button.twitter:hover {
+            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.26), 0 4px 15px 0 rgba(0, 0, 0, 0.26);
+            background-color: #83c3f3
+        }
+        
+        .trivia-container .modal_message span.correct {
+            color: #4caf50;
+        }
+        
+        .trivia-container .modal_message span.incorrect {
+            color: #f44336;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <!--==========================
+    Header
+  ============================-->
+    <script src="../header.js"></script>
+    <!-- #header -->
+
+    <main id="main" class="main-page">
+
+        <!--==========================
+      Speaker Details Section
+    ============================-->
+        <section id="speakers-details" class="wow fadeIn">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Math Quiz</h2>
+                </div>
+                <marquee style="color: #b7202e;">This game is best supported only on Desktop/Laptop.</marquee>
+                <div class="col-md-12">
+                    <div class="trivia-container" align-content="center">
+                        <div id="stage" style="position: relative;">
+                            <div id="container">
+                                <div id="gameContainer">
+                                    <div id="gameHeader">
+                                        <div class="left questions">
+                                            <div class="container"><span></span></div>
+                                        </div>
+                                        <div class="left timer">
+                                            <div class="container">TIME: <span></span></div>
+                                        </div>
+                                        <div class="left score">
+                                            <div class="container">SCORE: <span></span></div>
+                                        </div>
+                                    </div>
+                                    <div id="gameChoices">
+                                        <div class="row">
+                                            <div class="left half">
+                                                <div class="container"><button id="buttonOne" data-index="0"></button></div>
+                                            </div>
+                                            <div class="left half">
+                                                <div class="container"><button id="buttonTwo" data-index="1"></button></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="left half">
+                                                <div class="container"><button id="buttonThree" data-index="2"></button></div>
+                                            </div>
+                                            <div class="left half">
+                                                <div class="container"><button id="buttonFour" data-index="3"></button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h1 id="title">Math Quiz</h1>
+                                </div>
+                                <button id="startButton">START</button>
+                            </div>
+                        </div>
+                        <div id="modal_window">
+                            <div class="modal_message">
+                                <p></p>
+                            </div>
+
+                        </div>
+                    </div>
+
+        </section>
+    </main>
+
+
+    <!--==========================
+    Footer
+  ============================-->
+    <script src="../footer.js"></script>
+    <!-- #footer -->
+
+    <a href="#" class="back-to-top" style="background-color: #b7202e;"><i class="fa fa-angle-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="../assets/lib/jquery/jquery.min.js"></script>
+    <script src="../assets/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="../assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/lib/easing/easing.min.js"></script>
+    <script src="../assets/lib/superfish/hoverIntent.js"></script>
+    <script src="../assets/lib/superfish/superfish.min.js"></script>
+    <script src="../assets/lib/wow/wow.min.js"></script>
+    <script src="../assets/lib/venobox/venobox.min.js"></script>
+    <script src="../assets/lib/owlcarousel/owl.carousel.min.js"></script>
+
+
+    <!-- Contact Form JavaScript File -->
+    <script src="../assets/contactform/contactform.js"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/games/trivia.js"></script>
+
+</body>
+
+</html>
